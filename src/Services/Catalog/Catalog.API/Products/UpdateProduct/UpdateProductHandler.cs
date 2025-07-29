@@ -13,11 +13,10 @@
                 .GreaterThan(0).WithMessage("Price must be greater than 0");
         }
     }
-    public class UpdateProductCommandHandler(IDocumentSession session, ILogger<UpdateProductCommandHandler> logger) : ICommandHandler<UpdateProductCommand, UpdateProductResult>
+    public class UpdateProductCommandHandler(IDocumentSession session) : ICommandHandler<UpdateProductCommand, UpdateProductResult>
     {
         public async Task<UpdateProductResult> Handle(UpdateProductCommand Command, CancellationToken cancellationToken)
         {
-            logger.LogInformation("UpdateProductCommandHandler.Handle called with {@Command}", Command);
             var product=await session.LoadAsync<Product>(Command.Id,cancellationToken);
             if (product is null)
             {
