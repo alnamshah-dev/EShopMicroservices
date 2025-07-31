@@ -7,3 +7,4 @@ global using Basket.API.Exceptions;
 global using Marten;
 global using BuildingBlocks.Exceptions;
 global using BuildingBlocks.Behaviors;
+global using FluentValidation;
