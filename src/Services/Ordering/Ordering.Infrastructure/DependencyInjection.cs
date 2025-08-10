@@ -1,10 +1,4 @@
-﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Ordering.Infrastructure.Data.Interceptors;
 
 namespace Ordering.Infrastructure
 {
@@ -13,8 +7,12 @@ namespace Ordering.Infrastructure
         public static IServiceCollection AddInfrastructureServices(this IServiceCollection services,IConfiguration configuration)
         {
             var connectionString = configuration.GetConnectionString("Database");
-            //services.AddDbContext<ApplicationDbContext>(options =>
-            //options.UseSqlServer(connectionString));
+            services.AddDbContext<ApplicationDbContext>(options =>
+            {
+                options.AddInterceptors(new AuditableEntityInterceptor());
+                options.UseSqlServer(connectionString);
+            });
+            
             //services.AddScoped<IApplicationDbContext, ApplicationDbContext>();
             return services;
         }
