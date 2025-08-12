@@ -29,13 +29,13 @@ public class Order:Aggregate<OrderId>
         order.AddDomainEvent(new OrderCreatedEvent(order));
         return order;
     }
-    public void Update( OrderName orderName, Address shippingAddress, Address billingAddress, Payment payment)
+    public void Update( OrderName orderName, Address shippingAddress, Address billingAddress, Payment payment,OrderStatus status)
     {
         OrderName = orderName;
         ShippingAddress = shippingAddress;
         BillingAddress = billingAddress;
         Payment = payment;
-        Status = OrderStatus.Pending;
+        Status = status;
         AddDomainEvent(new OrderUpdatedEvent(this));
     }
     public void Add(ProductId productId, int quantity, decimal price)

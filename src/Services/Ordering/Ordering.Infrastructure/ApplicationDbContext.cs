@@ -1,5 +1,6 @@
-﻿namespace Ordering.Infrastructure;
-public class ApplicationDbContext:DbContext
+﻿using Ordering.Application.Data;
+namespace Ordering.Infrastructure;
+public class ApplicationDbContext:DbContext,IApplicationDbContext
 {
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options){}
     
