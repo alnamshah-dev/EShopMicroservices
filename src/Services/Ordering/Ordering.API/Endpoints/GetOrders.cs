@@ -1,10 +1,7 @@
 ﻿using BuildingBlocks.Paginations;
 using Ordering.Application.Orders.Queries.GetOrders;
-using Ordering.Application.Orders.Queries.GetOrdersByName;
-
 namespace Ordering.API.Endpoints;
 public record GetOrdersResponse(PaginatedResult<OrderDto> Orders);
-
 public class GetOrders : ICarterModule
 {
     public void AddRoutes(IEndpointRouteBuilder app)
